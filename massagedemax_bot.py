@@ -2,7 +2,6 @@ import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
-# ✅ ВСТАВЬТЕ ВАШ ТОКЕН СЮДА
 TOKEN = "8861938100:AAGUgIiH1gTQwzznogijF44woQdty6_kgDI"
 
 ANKETA_URL = "https://docs.google.com/forms/d/e/1FAIpQLSex5eswIQXZkLSaG-Vw8qPLtZx-tUt9xprhFG_xx0zPFFQI4g/viewform"
@@ -12,7 +11,6 @@ CERT1_URL = "https://drive.google.com/file/d/1omOEZMN8fbEMXMlVmO6YzY6utk3R9jZF/v
 CERT2_URL = "https://drive.google.com/file/d/130LIXPW7JsRbwjgMz70XTXr0bjhUJq8O/view"
 CERT3_URL = "https://drive.google.com/file/d/1FIPJwu9lbrObo71NQsD2ViIA4k7zFJRj/view"
 CERT4_URL = "https://drive.google.com/file/d/11xCyXxZ1ryzdw0oF4BBzHu49pLq23MJw/view"
-
 ADMIN_ID = 444701400
 
 logging.basicConfig(level=logging.INFO)
@@ -25,6 +23,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
          InlineKeyboardButton("💆 Цены", callback_data="prices")],
         [InlineKeyboardButton("⭐ Отзывы", callback_data="reviews"),
          InlineKeyboardButton("👋 Обо мне", callback_data="about")],
+        [InlineKeyboardButton("🌱 Полезное", callback_data="useful")],
         [InlineKeyboardButton("✉️ Написать Максиму", url=MAKSIM_URL)],
     ]
     await update.message.reply_text(
@@ -78,7 +77,7 @@ async def prices(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Оплата наличными или рублями на карту Т-Банка — скидка *5%*."
     )
     keyboard = [
-        [InlineKeyboardButton("😳 Что-то дороговато", callback_data="dorogovat")],
+        [InlineKeyboardButton("🙈 Спасибо, дороговато", callback_data="dorogovat")],
         [InlineKeyboardButton("📝 Заполнить анкету", url=ANKETA_URL)],
     ]
     if update.message:
@@ -149,7 +148,68 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.callback_query.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
 
 
-# Обработка нажатий на кнопки главного меню
+# /useful
+async def useful(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    text = (
+        "🌱 *Полезное от Максима*\n\n"
+        "Массаж — это здорово. Но большую часть времени ваш малыш проводит с вами, а не со мной.\n\n"
+        "Именно поэтому я жду от родителей включённости в процесс. Мы с вами — команда. "
+        "Я делаю своё дело руками, вы — каждый день дома. Только так получается настоящий результат.\n\n"
+        "Каждая бабушка знает как надо. Я тоже знаю — только с дипломом и тремя детьми. "
+        "Разбираю самые живучие советы и объясняю, где она ошибается 🙈\n\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "👣 *Босые ноги важнее красивых ботиночек*\n\n"
+        "Я понимаю — крошечные туфельки выглядят adorável. Но как массажист скажу прямо: "
+        "обувь на маленьком ребёнке — это помеха развитию.\n\n"
+        "Стопа состоит из 26 костей. Чтобы они сформировались правильно, ребёнку нужно чувствовать "
+        "поверхность под ногами — её текстуру, температуру, неровности. Именно так развивается "
+        "баланс, координация и правильный свод стопы.\n\n"
+        "В Рио нам особенно повезло — тёплый климат круглый год. Никаких отговорок про холодный пол 😄 "
+        "Дома, на пляже, на траве — максимум времени босиком.\n\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🎒 *Не все переноски одинаково полезны*\n\n"
+        "Слинг и эрго-рюкзак — прекрасные вещи, если подобраны правильно.\n\n"
+        "Главное правило — *М-позиция*: колени малыша выше попы, ножки разведены как лягушка. "
+        "Это физиологичное положение, которое поддерживает тазобедренные суставы и помогает "
+        "избежать дисплазии.\n\n"
+        "⚠️ Переноска лицом вперёд — одна из самых частых ошибок. Вес распределяется неправильно, "
+        "позвоночник перегружается, бёдра висят без опоры. Хотите чтобы малыш смотрел на мир — "
+        "поверните лицом к себе и немного вбок. Мир увидит, а спина скажет спасибо.\n\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🕯 *Ритуалы — это не баловство, это безопасность*\n\n"
+        "Дети живут в непредсказуемом мире. Ритуалы — это якоря, которые дают ощущение "
+        "стабильности и контроля.\n\n"
+        "Купание в одно время, одна и та же колыбельная, поглаживание перед сном — сигналы "
+        "нервной системе: всё хорошо, можно расслабиться.\n\n"
+        "И кстати — массаж работает в разы лучше, когда он тоже становится ритуалом. "
+        "Регулярность, спокойная обстановка, знакомые движения. Расслабленный ребёнок — "
+        "это совсем другой результат 🤲\n\n"
+        "━━━━━━━━━━━━━━━━━━\n"
+        "🍼 *Зачем малышу лежать на животе?*\n\n"
+        "Это первая гимнастика в жизни ребёнка — и одна из самых важных.\n\n"
+        "Когда малыш лежит на животе, он тренирует мышцы шеи, плеч и спины. "
+        "Учится держать голову, готовится к переворотам и ползанью. "
+        "Плюс — в этой позе лучше отходят газы 🙂\n\n"
+        "Начинать можно с первых дней жизни — буквально по 10 секунд. "
+        "К трём месяцам хорошо развитый малыш лежит на животе около 10 минут.\n\n"
+        "⚠️ Если ребёнок сильно запрокидывает голову назад и выгибается — "
+        "выкладывания лучше пока отложить и показаться специалисту.\n\n"
+        "Идеально — 5-10 раз в день, между кормлениями. "
+        "Это совсем немного, но разница в развитии будет заметна."
+    )
+    keyboard = [
+        [InlineKeyboardButton("🧦 Ножки должны быть в тепле!", url="https://medaboutme.ru/articles/5_prichin_pochemu_detyam_nado_khodit_bosikom/")],
+        [InlineKeyboardButton("👶 Пусть смотрит на мир — так интереснее!", url="https://t.me/slingosveta/2673")],
+        [InlineKeyboardButton("🕯 Зачем режим — само устаканится", url="https://n-e-n.ru/rituals/")],
+        [InlineKeyboardButton("😬 На животик? Ему же не нравится!", url="https://www.novokrinitskii.com/blog/vykladyvanie_na_zhivot")],
+    ]
+    if update.message:
+        await update.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
+    else:
+        await update.callback_query.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
+
+
+# Обработка кнопок
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
@@ -161,16 +221,16 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await reviews(update, context)
     elif query.data == "about":
         await about(update, context)
+    elif query.data == "useful":
+        await useful(update, context)
     elif query.data == "dorogovat":
         user = query.from_user
         name = user.full_name
         username = f"@{user.username}" if user.username else "без юзернейма"
-        # Уведомление Максиму
         await context.bot.send_message(
             chat_id=ADMIN_ID,
             text=f"💰 Кто-то считает дороговато!\n\n👤 {name} ({username})\nID: {user.id}"
         )
-        # Ответ пользователю
         await query.message.reply_text(
             "Напишите Максиму напрямую — он постарается найти решение 🙂",
             reply_markup=InlineKeyboardMarkup([
@@ -187,6 +247,7 @@ if __name__ == "__main__":
     app.add_handler(CommandHandler("prices", prices))
     app.add_handler(CommandHandler("reviews", reviews))
     app.add_handler(CommandHandler("contact", contact))
+    app.add_handler(CommandHandler("useful", useful))
     app.add_handler(CommandHandler("about", about))
     app.add_handler(CallbackQueryHandler(button_handler))
     print("Бот запущен ✅")
