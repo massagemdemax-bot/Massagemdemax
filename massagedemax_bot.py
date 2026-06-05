@@ -1,4 +1,3 @@
-
 import logging
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
@@ -136,10 +135,10 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Есть вопросы? Просто напиши 👇"
     )
     keyboard = [
-        [InlineKeyboardButton("📜 Мед. колледж, Россия", url=CERT1_URL)],
-        [InlineKeyboardButton("📜 Школа детского массажа, Россия", url=CERT2_URL)],
-        [InlineKeyboardButton("📜 Instituto Fisiomassoterapia, Бразилия", url=CERT3_URL)],
-        [InlineKeyboardButton("📜 Praxi Enfermagem, Бразилия", url=CERT4_URL)],
+        [InlineKeyboardButton("🎓 Мед. колледж 🇷🇺", url=CERT1_URL),
+         InlineKeyboardButton("👶 Детский массаж 🇷🇺", url=CERT2_URL)],
+        [InlineKeyboardButton("🌿 Fisiomassoterapia 🇧🇷", url=CERT3_URL),
+         InlineKeyboardButton("🤲 Praxi Enfermagem 🇧🇷", url=CERT4_URL)],
         [InlineKeyboardButton("📝 Заполнить анкету", url=ANKETA_URL)],
         [InlineKeyboardButton("✉️ Написать Максиму", url=MAKSIM_URL)],
     ]
