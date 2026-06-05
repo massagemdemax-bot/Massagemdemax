@@ -29,7 +29,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
     await update.message.reply_text(
         "Привет! Я бот Максима — детского массажиста в Бразилии 🇧🇷\n\n"
-        "Выберите, что вас интересует:",
+        "Выберите, что вас интересует:\n\n"
+        "🔒 Нажимая кнопки, вы соглашаетесь на обработку ваших данных для записи на массаж.",
         reply_markup=InlineKeyboardMarkup(keyboard)
     )
 
