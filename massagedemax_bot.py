@@ -224,9 +224,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "холодный пол 😄 Дома, на пляже, на траве — максимум времени босиком. "
             "Это лучшее, что вы можете сделать для ног вашего малыша прямо сейчас.",
             parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("📖 Читать источник", url="https://medaboutme.ru/articles/5_prichin_pochemu_detyam_nado_khodit_bosikom/")
-            ]])
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📖 Читать источник", url="https://medaboutme.ru/articles/5_prichin_pochemu_detyam_nado_khodit_bosikom/")],
+                [InlineKeyboardButton("↩️ К списку советов", callback_data="useful"),
+                 InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu")],
+            ])
         )
     elif query.data == "tip_perenoski":
         await query.message.reply_text(
@@ -240,9 +242,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "смотрел на мир — поверните лицом к себе и немного вбок. Мир увидит, а спина "
             "скажет спасибо.",
             parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("📖 Читать источник", url="https://t.me/slingosveta/2673")
-            ]])
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📖 Читать источник", url="https://t.me/slingosveta/2673")],
+                [InlineKeyboardButton("↩️ К списку советов", callback_data="useful"),
+                 InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu")],
+            ])
         )
     elif query.data == "tip_ritualy":
         await query.message.reply_text(
@@ -255,9 +259,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Регулярность, спокойная обстановка, знакомые движения. Расслабленный ребёнок — "
             "это совсем другой результат 🤲",
             parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("📖 Читать источник", url="https://n-e-n.ru/rituals/")
-            ]])
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📖 Читать источник", url="https://n-e-n.ru/rituals/")],
+                [InlineKeyboardButton("↩️ К списку советов", callback_data="useful"),
+                 InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu")],
+            ])
         )
     elif query.data == "tip_zhivot":
         await query.message.reply_text(
@@ -273,9 +279,24 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "Идеально — 5-10 раз в день между кормлениями. "
             "Это совсем немного, но разница в развитии будет заметна.",
             parse_mode="Markdown",
-            reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("📖 Читать источник", url="https://www.novokrinitskii.com/blog/vykladyvanie_na_zhivot")
-            ]])
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("📖 Читать источник", url="https://www.novokrinitskii.com/blog/vykladyvanie_na_zhivot")],
+                [InlineKeyboardButton("↩️ К списку советов", callback_data="useful"),
+                 InlineKeyboardButton("🏠 Главное меню", callback_data="main_menu")],
+            ])
+        )
+    elif query.data == "main_menu":
+        keyboard = [
+            [InlineKeyboardButton("📅 Даты записи", callback_data="dates"),
+             InlineKeyboardButton("💆 Цены", callback_data="prices")],
+            [InlineKeyboardButton("⭐ Отзывы", callback_data="reviews"),
+             InlineKeyboardButton("👋 Обо мне", callback_data="about")],
+            [InlineKeyboardButton("🌱 Полезное", callback_data="useful")],
+            [InlineKeyboardButton("✉️ Написать Максиму", url=MAKSIM_URL)],
+        ]
+        await query.message.reply_text(
+            "Выберите, что вас интересует:",
+            reply_markup=InlineKeyboardMarkup(keyboard)
         )
     elif query.data == "dorogovat":
         user = query.from_user
