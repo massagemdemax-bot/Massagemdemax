@@ -199,12 +199,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "• Разовый сеанс — 400 реалов\n"
             "• Курс из 10 сеансов по предоплате — 3400 реалов\n\n"
         )
-        await query.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(PRICES_KEYBOARD))
     elif query.data == "city_other":
         city = query.message.text if query.message else ""
         text = (
             "💆 *Стоимость услуг*\n\n"
-            "*Первый визит — 450 реалов*\n\n"
+            "*Первый визит — 400 реалов*\n\n"
             + PRICES_DESCRIPTION +
             "\n━━━━━━━━━━━━━━━━━━\n"
             "*Сеанс массажа + ЛФК:*\n"
