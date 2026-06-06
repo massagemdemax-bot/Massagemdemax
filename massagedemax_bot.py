@@ -136,8 +136,7 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "🌱 *Помогу с:*\n"
         "• коликами и газиками\n"
         "• проверкой врождённых физиологических рефлексов\n\n"
-        "Спокойными движениями и простыми словами — с теплом рук и любовью к каждому маленькому человеку 🤲\n\n"
-        "Есть вопросы? Просто напиши 👇"
+        "Спокойными движениями и простыми словами — с теплом рук и любовью к каждому маленькому человеку 🤲"
     )
     keyboard = [
         [InlineKeyboardButton("🎓 Мед. колледж 🇷🇺", url=CERT1_URL),
@@ -148,9 +147,11 @@ async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("✉️ Написать Максиму", url=MAKSIM_URL)],
     ]
     if update.message:
-        await update.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
+        await update.message.reply_text(text, parse_mode="Markdown")
+        await update.message.reply_text("Есть вопросы? Просто напиши 👇", reply_markup=InlineKeyboardMarkup(keyboard))
     else:
-        await update.callback_query.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
+        await update.callback_query.message.reply_text(text, parse_mode="Markdown")
+        await update.callback_query.message.reply_text("Есть вопросы? Просто напиши 👇", reply_markup=InlineKeyboardMarkup(keyboard))
 
 
 # /useful
@@ -160,8 +161,7 @@ async def useful(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "Массаж — это здорово. Но большую часть времени ваш малыш проводит с вами, а не со мной. "
         "Именно поэтому мне важно, чтобы вы тоже были в теме.\n\n"
         "Все вокруг знают как правильно — бабушки, соседки, подруги. Я тоже знаю. "
-        "Только у меня диплом, три сертификата и трое своих детей 🙈\n\n"
-        "Разбираю самые живучие советы — нажмите на любой 👇"
+        "Только у меня диплом, три сертификата и трое своих детей 🙈"
     )
     keyboard = [
         [InlineKeyboardButton("🧦 Ножки должны быть в тепле!", callback_data="tip_nogi")],
@@ -170,9 +170,11 @@ async def useful(update: Update, context: ContextTypes.DEFAULT_TYPE):
         [InlineKeyboardButton("😬 На животик? Ему же не нравится!", callback_data="tip_zhivot")],
     ]
     if update.message:
-        await update.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
+        await update.message.reply_text(text, parse_mode="Markdown")
+        await update.message.reply_text("Разбираю самые живучие советы — нажмите на любой 👇", reply_markup=InlineKeyboardMarkup(keyboard))
     else:
-        await update.callback_query.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(keyboard))
+        await update.callback_query.message.reply_text(text, parse_mode="Markdown")
+        await update.callback_query.message.reply_text("Разбираю самые живучие советы — нажмите на любой 👇", reply_markup=InlineKeyboardMarkup(keyboard))
 
 
 # Обработка кнопок
@@ -197,10 +199,11 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "\n━━━━━━━━━━━━━━━━━━\n"
             "*Сеанс массажа + ЛФК:*\n"
             "• Разовый сеанс — 400 реалов\n"
-            "• Курс из 10 сеансов по предоплате — 3400 реалов\n\n"
+            "• Курс из 10 сеансов по предоплате — 3400 реалов"
         )
+        await query.message.reply_text(text, parse_mode="Markdown")
+        await query.message.reply_text("Записаться или есть вопросы? 👇", reply_markup=InlineKeyboardMarkup(PRICES_KEYBOARD))
     elif query.data == "city_other":
-        city = query.message.text if query.message else ""
         text = (
             "💆 *Стоимость услуг*\n\n"
             "*Первый визит — 400 реалов*\n\n"
@@ -208,9 +211,10 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "\n━━━━━━━━━━━━━━━━━━\n"
             "*Сеанс массажа + ЛФК:*\n"
             "• Разовый сеанс — 350 реалов\n"
-            "• Курс из 10 сеансов по предоплате — 3000 реалов\n\n"
+            "• Курс из 10 сеансов по предоплате — 3000 реалов"
         )
-        await query.message.reply_text(text, parse_mode="Markdown", reply_markup=InlineKeyboardMarkup(PRICES_KEYBOARD))
+        await query.message.reply_text(text, parse_mode="Markdown")
+        await query.message.reply_text("Записаться или есть вопросы? 👇", reply_markup=InlineKeyboardMarkup(PRICES_KEYBOARD))
     elif query.data == "tip_nogi":
         await query.message.reply_text(
             "🧦 *Ножки должны быть в тепле!*\n\n"
