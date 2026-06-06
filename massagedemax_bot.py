@@ -23,9 +23,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
          InlineKeyboardButton("💆 Цены", callback_data="prices")],
         [InlineKeyboardButton("⭐ Отзывы", callback_data="reviews"),
          InlineKeyboardButton("👋 Обо мне", callback_data="about")],
-        [InlineKeyboardButton("🌱 Полезное", callback_data="useful")],
-        [InlineKeyboardButton("✉️ Написать Максиму", url=MAKSIM_URL)],
-    ]
+      [InlineKeyboardButton("🌱 Полезное", callback_data="useful"),
+ InlineKeyboardButton("✉️ Написать Максиму", url=MAKSIM_URL)],
     await update.message.reply_text(
         "Привет! Я бот Максима — детского массажиста в Бразилии 🇧🇷\n\n"
         "Выберите, что вас интересует:\n\n"
